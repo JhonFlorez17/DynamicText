@@ -14,7 +14,7 @@ export class PaymentsEntryComponent implements OnInit, OnChanges {
 
   @Input() context: PaymentContext = 'SUPPLIERS';
 
-  constructor(private contentService: PaymentsContentService) {}
+  constructor(private readonly contentService: PaymentsContentService) {}
 
   ngOnInit(): void {
     this.contentService.loadContent(this.context);

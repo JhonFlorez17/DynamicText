@@ -25,27 +25,27 @@ export class PaymentsPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
-      const provider = params['provider'] as string; // 'i18n' o 'cms'
-      const context = params['context'] as string; // 'payroll' o 'suppliers'
+      const provider = params['provider'] as string; /* 'i18n' o 'cms' */
+      const context = params['context'] as string;  /* 'payroll' o 'suppliers' */
 
-      // Validar y configurar el proveedor
+      /* Validar y configurar el proveedor */
       if (provider === 'cms') {
         this.configService.setProviderType('CMS');
       } else if (provider === 'i18n') {
         this.configService.setProviderType('I18N');
       } else {
-        // Ruta inválida, redirigir a i18n/payroll por defecto
+        /* Ruta inválida, redirigir a i18n/payroll por defecto */
         this.router.navigate(['/i18n/payroll']);
         return;
       }
 
-      // Validar y configurar el contexto
+      /* Validar y configurar el contexto */
       if (context === 'suppliers') {
         this.paymentContext.set('SUPPLIERS');
       } else if (context === 'payroll') {
         this.paymentContext.set('PAYROLL');
       } else {
-        // Contexto inválido, redirigir a payroll
+        /* Contexto inválido, redirigir a payroll */
         this.router.navigate([`/${provider}/payroll`]);
         return;
       }
