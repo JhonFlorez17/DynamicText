@@ -1,0 +1,99 @@
+<section class="max-w-6xl mx-auto p-4 md:p-8 font-sans">
+  <!-- Header -->
+  <div class="mb-10 pl-1">
+    <h2 class="text-[32px] font-extrabold text-slate-900 mb-2 leading-tight tracking-tight">
+      {{ 'PAYMENTS.TITLE' | translate }}
+    </h2>
+    <p class="text-[18px] font-medium text-slate-500">
+      {{ 'PAYMENTS.SUBTITLE' | translate }}
+    </p>
+  </div>
+
+  <!-- Cards Grid -->
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+
+    <!-- Manual Payment Card -->
+    <article (click)="goToManual()"
+      class="group relative flex flex-col p-8 rounded-[32px] transition-all duration-500 border border-transparent bg-blue-50/70 hover:bg-white hover:shadow-[0_20px_50px_rgba(59,130,246,0.15)] hover:-translate-y-2 hover:border-blue-100 cursor-pointer overflow-hidden backdrop-blur-sm">
+      <!-- Background accent blob -->
+      <div class="absolute -right-10 -top-10 w-48 h-48 rounded-full bg-blue-400 blur-3xl opacity-10 transition-opacity group-hover:opacity-20"></div>
+
+      <!-- Icon Container -->
+      <div
+        class="w-14 h-14 flex items-center justify-center rounded-2xl mb-8 bg-white shadow-lg shadow-blue-200/50 text-blue-600 transition-transform duration-500 group-hover:scale-110 group-hover:rotate-3">
+        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+          <circle cx="9" cy="7" r="4" />
+          <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
+          <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+        </svg>
+      </div>
+
+      <!-- Content -->
+      <div class="relative z-10">
+        <h3 class="text-[22px] font-extrabold text-slate-900 mb-3 leading-snug tracking-tight">
+          {{ 'PAYMENTS.MANUAL.TITLE' | translate }}
+        </h3>
+        <p class="text-[15px] text-slate-500 font-medium leading-relaxed max-w-[85%] mb-12">
+          {{ 'PAYMENTS.MANUAL.DESCRIPTION' | translate }}
+        </p>
+      </div>
+
+      <!-- Action Footer -->
+      <div class="mt-auto flex items-center justify-between relative z-10">
+        <span class="text-sm font-bold tracking-wider text-blue-700 uppercase">
+          {{ 'PAYMENTS.MANUAL.ACTION' | translate }}
+        </span>
+        <div
+          class="w-11 h-11 flex items-center justify-center rounded-full bg-white shadow-md transition-all duration-300 group-hover:translate-x-2 group-hover:shadow-blue-200 group-hover:bg-blue-600 group-hover:text-white text-blue-600">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+            <path d="m9 18 6-6-6-6" />
+          </svg>
+        </div>
+      </div>
+    </article>
+
+    <!-- Massive Payment Card -->
+    <article (click)="goToMassive()"
+      class="group relative flex flex-col p-8 rounded-[32px] transition-all duration-500 border border-transparent bg-rose-50/70 hover:bg-white hover:shadow-[0_20px_50px_rgba(244,63,94,0.15)] hover:-translate-y-2 hover:border-rose-100 cursor-pointer overflow-hidden backdrop-blur-sm">
+      <!-- Background accent blob -->
+      <div class="absolute -right-10 -top-10 w-48 h-48 rounded-full bg-rose-400 blur-3xl opacity-10 transition-opacity group-hover:opacity-20"></div>
+
+      <!-- Icon Container -->
+      <div
+        class="w-14 h-14 flex items-center justify-center rounded-2xl mb-8 bg-white shadow-lg shadow-rose-200/50 text-rose-600 transition-transform duration-500 group-hover:scale-110 group-hover:rotate-3">
+        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z" />
+          <polyline points="14.5 2 14.5 7.5 20 7.5" />
+          <line x1="16" y1="13" x2="8" y2="13" />
+          <line x1="16" y1="17" x2="8" y2="17" />
+          <line x1="10" y1="9" x2="8" y2="9" />
+        </svg>
+      </div>
+
+      <!-- Content -->
+      <div class="relative z-10">
+        <h3 class="text-[22px] font-extrabold text-slate-900 mb-3 leading-snug tracking-tight">
+          {{ 'PAYMENTS.MASSIVE.TITLE' | translate }}
+        </h3>
+        <p class="text-[15px] text-slate-500 font-medium leading-relaxed max-w-[85%] mb-12">
+          {{ 'PAYMENTS.MASSIVE.DESCRIPTION' | translate }}
+        </p>
+      </div>
+
+      <!-- Action Footer -->
+      <div class="mt-auto flex items-center justify-between relative z-10">
+        <span class="text-sm font-bold tracking-wider text-rose-700 uppercase">
+          {{ 'PAYMENTS.MASSIVE.ACTION' | translate }}
+        </span>
+        <div
+          class="w-11 h-11 flex items-center justify-center rounded-full bg-white shadow-md transition-all duration-300 group-hover:translate-x-2 group-hover:shadow-rose-200 group-hover:bg-rose-600 group-hover:text-white text-rose-600">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+            <path d="m9 18 6-6-6-6" />
+          </svg>
+        </div>
+      </div>
+    </article>
+
+  </div>
+</section>

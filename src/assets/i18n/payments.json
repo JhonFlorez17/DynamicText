@@ -1,0 +1,23 @@
+{
+  "PAYROLL": {
+    "TITLE": "Pagos de nómina",
+    "SUBTITLE": "Inicie sus pagos"
+  },
+  "SUPPLIERS": {
+    "TITLE": "Pagos de proveedores y terceros",
+    "SUBTITLE": "Inicie sus pagos"
+  },
+  "SHARED": {
+    "MANUAL": {
+      "TITLE": "Pago manual",
+      "DESCRIPTION": "Puede pagar hasta 15 destinos sin cargar ningún archivo.",
+      "ACTION": "Ir a pagar i18n"
+    },
+    "MASSIVE": {
+      "TITLE": "Pago masivo",
+      "DESCRIPTION": "Puede pagar hasta 10.000 destinos y debe cargar una plantilla en formato CSV o TXT.",
+      "ACTION": "Ir a pagar i18n"
+    }
+  }
+}
+
