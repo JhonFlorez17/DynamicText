@@ -1,55 +1,29 @@
-import { Component, OnInit, inject, signal } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { PaymentsEntryComponent } from '../../shared/components/payment-section/payments-entry.component';
-import { PaymentContext } from '../../../domain/models/payment-context.type';
+import { Component, OnInit, inject, ChangeDetectorRef } from '@angular/core';
 import { ContentConfigService } from '../../../application/services/content-config.service';
+import { DynamicContentPipe } from '../../shared/pipes/dynamic-content.pipe';
+import { PaymentsContentService } from '../../../application/services/payments-content.service';
+import { environment } from '../../../../environments/environment';
 
 @Component({
   selector: 'app-payments-page',
   standalone: true,
-  imports: [PaymentsEntryComponent],
-  template: `
-    <div class="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 py-8">
-      <div class="max-w-6xl mx-auto px-4">
-        <app-payments-entry [context]="paymentContext()"></app-payments-entry>
-      </div>
-    </div>
-  `,
+  imports: [DynamicContentPipe],
+  templateUrl: './payments-page.component.html',
 })
 export class PaymentsPageComponent implements OnInit {
-  private readonly route = inject(ActivatedRoute);
-  private readonly router = inject(Router);
   private readonly configService = inject(ContentConfigService);
-
-  paymentContext = signal<PaymentContext>('PAYROLL');
+  private readonly contentService = inject(PaymentsContentService);
+  private readonly cdr = inject(ChangeDetectorRef);
 
   ngOnInit(): void {
-    this.route.params.subscribe((params) => {
-      const provider = params['provider'] as string; /* 'i18n' o 'cms' */
-      const context = params['context'] as string;  /* 'payroll' o 'suppliers' */
+    
+    /* Configurar el proveedor desde el environment */
+    this.configService.setProviderType(environment.contentProvider);
 
-      /* Validar y configurar el proveedor */
-      if (provider === 'cms') {
-        this.configService.setProviderType('CMS');
-      } else if (provider === 'i18n') {
-        this.configService.setProviderType('I18N');
-      } else {
-        /* Ruta inválida, redirigir a i18n/payroll por defecto */
-        this.router.navigate(['/i18n/payroll']);
-        return;
-      }
-
-      /* Validar y configurar el contexto */
-      if (context === 'suppliers') {
-        this.paymentContext.set('SUPPLIERS');
-      } else if (context === 'payroll') {
-        this.paymentContext.set('PAYROLL');
-      } else {
-        /* Contexto inválido, redirigir a payroll */
-        this.router.navigate([`/${provider}/payroll`]);
-        return;
-      }
+    /* Cargar el contenido (el contexto se toma del environment en el servicio) */
+    this.contentService.loadContent().then(() => {
+      /* Forzar la detección de cambios después de cargar el contenido */
+      this.cdr.detectChanges();
     });
   }
 }
-
