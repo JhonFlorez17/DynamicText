@@ -1,6 +1,5 @@
 export const environment = {
   production: false,
-  contentProvider: 'CMS' as 'I18N' | 'CMS',
-  paymentContext: 'PAYROLL' as 'PAYROLL' | 'SUPPLIERS',
+  contentProvider: 'I18N' as 'I18N' | 'CMS',
 };
 

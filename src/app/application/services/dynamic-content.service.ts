@@ -1,6 +1,4 @@
 import { Injectable, signal } from '@angular/core';
-import { environment } from '../../../environments/environment';
-import { PaymentContext } from '../../domain/models/payment-context.type';
 
 export interface ContentData {
   [key: string]: any;
@@ -18,37 +16,28 @@ export class DynamicContentService {
   }
 
   /**
-   * Obtiene el valor de una clave buscando de forma flexible en el JSON
-   * Estrategia de búsqueda:
-   * 1. Busca la ruta completa tal cual (ruta absoluta)
-   * 2. Si no encuentra, busca en el contexto del environment (ruta relativa)
-   * 3. Si no encuentra, retorna la clave
+   * Obtiene el valor de una clave usando notación de punto (ruta absoluta)
+   * Busca directamente en la estructura del JSON sin asumir ninguna estructura específica
    * 
    * Ejemplos:
    * - 'PAYROLL.TITLE' -> busca directamente en PAYROLL.TITLE
+   * - 'SUPPLIERS.SUBTITLE' -> busca directamente en SUPPLIERS.SUBTITLE
    * - 'SHARED.MANUAL.TITLE' -> busca directamente en SHARED.MANUAL.TITLE
-   * - 'TITLE' -> busca primero en PAYROLL.TITLE o SUPPLIERS.TITLE según environment
    * - 'CUALQUIER.RUTA.NUEVA' -> busca directamente en CUALQUIER.RUTA.NUEVA
    */
   get(key: string): string {
-    const context: PaymentContext = environment.paymentContext;
+    if (!key) {
+      return '';
+    }
+
     const keys = key.split('.');
     const content = this.content();
 
-    // Estrategia 1: Buscar la ruta completa tal cual (ruta absoluta)
-    let value = this.navigatePath(content, keys);
+    // Buscar la ruta completa tal cual (ruta absoluta)
+    const value = this.navigatePath(content, keys);
+    
     if (value !== null && typeof value === 'string') {
       return value;
-    }
-
-    // Estrategia 2: Si no encontró y la clave no empieza con el contexto,
-    // intentar buscar en el contexto del environment (ruta relativa)
-    if (keys[0] !== context && keys[0] !== 'SHARED') {
-      const contextKeys = [context, ...keys];
-      value = this.navigatePath(content, contextKeys);
-      if (value !== null && typeof value === 'string') {
-        return value;
-      }
     }
 
     // Si no encuentra, retorna la clave original
