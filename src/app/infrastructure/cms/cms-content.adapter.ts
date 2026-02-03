@@ -1,37 +1,23 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { TranslateService } from '@ngx-translate/core';
 import { firstValueFrom } from 'rxjs';
 import { ContentProviderPort } from '../../domain/ports/content-provider.port';
-import { PaymentContext } from '../../domain/models/payment-context.type';
+import { DynamicContentService } from '../../application/services/dynamic-content.service';
 
+/**
+ * Adaptador que implementa ContentProviderPort para cargar contenido desde CMS (mock de API)
+ */
 @Injectable()
-export class CmsContentAdapter extends ContentProviderPort {
+export class CmsContentAdapter implements ContentProviderPort {
   constructor(
     private readonly http: HttpClient,
-    private readonly translate: TranslateService,
-  ) {
-    super();
-  }
+    private readonly contentService: DynamicContentService,
+  ) {}
 
-  async load(context: PaymentContext): Promise<void> {
+  async load(): Promise<void> {
     const data = await firstValueFrom(
       this.http.get<any>('/assets/cms/payments.cms.mock.json')
     );
-
-    this.translate.setTranslation(
-      'payments',
-      {
-        PAYMENTS: {
-          TITLE: data[context].TITLE,
-          SUBTITLE: data[context].SUBTITLE,
-          MANUAL: data.SHARED.MANUAL,
-          MASSIVE: data.SHARED.MASSIVE,
-        },
-      },
-      true,
-    );
-    
-    this.translate.use('payments');
+    this.contentService.setContent(data);
   }
 }

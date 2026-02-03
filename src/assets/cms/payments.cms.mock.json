@@ -1,11 +1,11 @@
 {
   "PAYROLL": {
-    "TITLE": "Pagos de nómina",
-    "SUBTITLE": "Inicie sus pagos"
+    "TITLE": "Pagos de nómina CMS",
+    "SUBTITLE": "Inicie sus pagos CMS"
   },
   "SUPPLIERS": {
-    "TITLE": "Pagos de proveedores y terceros",
-    "SUBTITLE": "Inicie sus pagos"
+    "TITLE": "Pagos de proveedores y terceros CMS",
+    "SUBTITLE": "Inicie sus pagos CMS"
   },
   "SHARED": {
     "MANUAL": {

@@ -1,11 +1,11 @@
 {
   "PAYROLL": {
-    "TITLE": "Pagos de nómina",
-    "SUBTITLE": "Inicie sus pagos"
+    "TITLE": "Pagos de nómina I18N",
+    "SUBTITLE": "Inicie sus pagos I18N"
   },
   "SUPPLIERS": {
-    "TITLE": "Pagos de proveedores y terceros",
-    "SUBTITLE": "Inicie sus pagos"
+    "TITLE": "Pagos de proveedores y terceros I18N ",
+    "SUBTITLE": "Inicie sus pagos I18N"
   },
   "SHARED": {
     "MANUAL": {
